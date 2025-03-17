@@ -1,12 +1,12 @@
 import { Box, Flex, Highlight, Image, Text, useClipboard, VStack } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import Button from '@/components/Button'
 import { LiquidityActionModeType } from '@/features/Liquidity/utils'
 import CopyIcon from '@/icons/misc/CopyIcon'
 import { colors } from '@/theme/cssVariables'
-import { useTranslation } from 'react-i18next'
 import { routeToPage } from '@/utils/routeTools'
 
 export default function Done() {
@@ -52,7 +52,7 @@ export default function Done() {
         <Flex justify="center" align="center" gap={1}>
           <Text fontSize="sm" color="#8C6EEF" fontWeight="medium">
             <Highlight query={'AMM ID:'} styles={{ color: colors.textSecondary, fontWeight: 'normal' }}>
-              {`AMM ID: ` + ammId ?? ''}
+              {`AMM ID: ` + (ammId ?? '')}
             </Highlight>
           </Text>
           <CopyIcon onClick={onCopy} cursor="pointer" />
