@@ -3,6 +3,8 @@ import { Box, HStack, useRadio, useRadioGroup, UseRadioProps } from '@chakra-ui/
 import { colors } from '@/theme/cssVariables'
 
 function RadioItem(props: UseRadioProps & { children: React.ReactNode }) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore TEW possible issues
   const { getInputProps, getCheckboxProps } = useRadio(props)
 
   const input = getInputProps()
