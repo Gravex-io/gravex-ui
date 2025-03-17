@@ -1,8 +1,9 @@
+import { Box, Collapse, Flex, HStack, Spacer, Text, useDisclosure } from '@chakra-ui/react'
+import { ReactNode } from 'react'
+
 import { QuestionToolTip } from '@/components/QuestionToolTip'
 import { colors } from '@/theme/cssVariables'
 import { shrinkToValue } from '@/utils/shrinkToValue'
-import { Box, Collapse, Flex, HStack, Spacer, Text, useDisclosure } from '@chakra-ui/react'
-import { ReactNode } from 'react'
 
 export function SettingField({
   isCollapseDefaultOpen,

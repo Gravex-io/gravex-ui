@@ -1,46 +1,38 @@
-import { useDisclosure } from '@/hooks/useDelayDisclosure'
-import RaydiumLogo from '@/icons/RaydiumLogo'
-import RaydiumLogoOutline from '@/icons/RaydiumLogoOutline'
-import ChevronDownIcon from '@/icons/misc/ChevronDownIcon'
-import Gear from '@/icons/misc/Gear'
-import { useAppStore } from '@/store'
-import { colors } from '@/theme/cssVariables'
-import { appLayoutPaddingX } from '@/theme/detailConfig'
 import {
-  Box,
-  Flex,
-  HStack,
-  Menu,
-  MenuButton,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  Text
+  Box, Flex, HStack, Menu, MenuButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { ReactNode, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { useDisclosure } from '@/hooks/useDelayDisclosure'
+import ChevronDownIcon from '@/icons/misc/ChevronDownIcon'
+import Gear from '@/icons/misc/Gear'
+import RaydiumLogo from '@/icons/RaydiumLogo'
+import RaydiumLogoOutline from '@/icons/RaydiumLogoOutline'
+import { useAppStore } from '@/store'
+import { colors } from '@/theme/cssVariables'
+import { appLayoutPaddingX } from '@/theme/detailConfig'
+
 import { Desktop, Mobile } from '../MobileDesktop'
 import SolWallet from '../SolWallet'
-import { MobileBottomNavbar } from './MobileBottomNavbar'
+
+import AppVersion from './AppVersion'
 import { ColorThemeSettingField } from './components/ColorThemeSettingField'
 import { DefaultExplorerSettingField } from './components/DefaultExplorerSettingField'
+import DisclaimerModal from './components/DisclaimerModal'
 import { LanguageSettingField } from './components/LanguageSettingField'
 import { NavMoreButtonMenuPanel } from './components/NavMoreButtonMenuPanel'
+import { PriorityButton } from './components/PriorityButton'
 import { RPCConnectionSettingField } from './components/RPCConnectionSettingField'
 import { Divider } from './components/SettingFieldDivider'
 import { SlippageToleranceSettingField } from './components/SlippageToleranceSettingField'
 import { VersionedTransactionSettingField } from './components/VersionedTransactionSettingField'
-import { PriorityButton } from './components/PriorityButton'
-import DisclaimerModal from './components/DisclaimerModal'
-import AppVersion from './AppVersion'
+import { MobileBottomNavbar } from './MobileBottomNavbar'
 
 export interface NavSettings {
-  // colorTheme: 'dark' | 'light'
+  colorTheme: 'dark' | 'light'
 }
 
 function AppNavLayout({

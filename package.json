@@ -1,7 +1,7 @@
 {
   "name": "gavex-ui",
   "version": "0.0.1",
-  "author": "Gravex",
+  "author": "GravexIO",
   "repository": "https://github.com/Gravex-io/gravex-ui",
   "license": "Apache-2.0",
   "engines": {
@@ -47,8 +47,8 @@
     "@solana/web3.js": "1.98.0"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.7.1",
-    "@emotion/react": "^11",
+    "@chakra-ui/react": "2.10.1",
+    "@emotion/react": "11.0.0",
     "@emotion/styled": "^11",
     "@gravexio/gravex-sdk": "^0.1.2",
     "@ledgerhq/hw-transport-webhid": "^6.29.2",
@@ -74,8 +74,9 @@
     "@types/d3": "^7.4.0",
     "@types/numeral": "^2.0.5",
     "@types/react-datepicker": "^4.8.0",
+    "@types/recharts": "^1.8.29",
     "@types/uuid": "^9.0.6",
-    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/eslint-plugin": "8.26.1",
     "@walletconnect/solana-adapter": "^0.0.5",
     "@wormhole-foundation/wormhole-connect": "^0.3.21",
     "axios": "^1.2.6",
@@ -117,7 +118,7 @@
     "@types/node-fetch": "^2.6.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "eslint": "^8.22.0",
+    "eslint": "^9.22.0",
     "eslint-config-next": "^12.3.4",
     "eslint-plugin-react": "^7.31.7",
     "prettier": "^2.7.1",

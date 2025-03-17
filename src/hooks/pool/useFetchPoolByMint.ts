@@ -1,15 +1,16 @@
-import { useMemo, useCallback } from 'react'
-import { PoolsApiReturn, FetchPoolParams, solToWSol, ApiV3PoolInfoItem, PoolFetchType } from '@gravexio/gravex-sdk'
-import shallow from 'zustand/shallow'
-import axios from '@/api/axios'
-import { MINUTE_MILLISECONDS } from '@/utils/date'
-import { useAppStore } from '@/store'
-import { formatPoolData, formatAprData } from './formatter'
-import { ReturnPoolType, ReturnFormattedPoolType } from './type'
-
-import useSWRInfinite from 'swr/infinite'
-import { KeyedMutator } from 'swr'
+import { ApiV3PoolInfoItem, FetchPoolParams, PoolFetchType, PoolsApiReturn, solToWSol } from '@gravexio/gravex-sdk'
 import { AxiosResponse } from 'axios'
+import { useCallback, useMemo } from 'react'
+import { KeyedMutator } from 'swr'
+import useSWRInfinite, { SWRInfiniteKeyedMutator } from 'swr/infinite'
+import shallow from 'zustand/shallow'
+
+import axios from '@/api/axios'
+import { useAppStore } from '@/store'
+import { MINUTE_MILLISECONDS } from '@/utils/date'
+
+import { formatAprData, formatPoolData } from './formatter'
+import { ReturnFormattedPoolType, ReturnPoolType } from './type'
 
 export default function useFetchPoolByMint<T extends PoolFetchType>(
   props: {
@@ -29,7 +30,8 @@ export default function useFetchPoolByMint<T extends PoolFetchType>(
   isLoadEnded: boolean
   loadMore: () => void
   size: number
-  mutate: KeyedMutator<AxiosResponse<PoolsApiReturn, any>[]>
+  //mutate: KeyedMutator<AxiosResponse<PoolsApiReturn, any>[]>
+  mutate: SWRInfiniteKeyedMutator<AxiosResponse<PoolsApiReturn, any>[]> // ✅ Use correct SWR Infinite Mutator Type TEW may cause issues
   isValidating: boolean
   isLoading: boolean
 } {

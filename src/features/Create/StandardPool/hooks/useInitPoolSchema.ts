@@ -1,13 +1,14 @@
+import { ApiCpmmConfigInfo, ApiV3Token } from '@gravexio/gravex-sdk'
+import { TOKEN_2022_PROGRAM_ID } from '@solana/spl-token'
+import BN from 'bn.js'
 import Decimal from 'decimal.js'
+import { TFunction } from 'i18next'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import * as yup from 'yup'
-import { ApiCpmmConfigInfo, ApiV3Token } from '@gravexio/gravex-sdk'
-import { wSolToSol } from '@/utils/token'
+
 import { useTokenAccountStore } from '@/store/useTokenAccountStore'
-import { TFunction } from 'i18next'
-import BN from 'bn.js'
-import { TOKEN_2022_PROGRAM_ID } from '@solana/spl-token'
+import { wSolToSol } from '@/utils/token'
 
 const numberTransform = yup.number().transform((value) => (isNaN(value) ? 0 : value))
 const numberSchema = (errMsg: string) => numberTransform.moreThan(0, errMsg).required(errMsg)
@@ -35,7 +36,8 @@ export default function useInitPoolSchema({ startTime, baseToken, quoteToken, to
 
   const schema = (t: TFunction<'translation', undefined, 'translation'>) =>
     yup.object().shape({
-      ...(isAmmV4 ? {} : { feeConfig: yup.mixed().required(t('common.select') + t('field.fee_tier') ?? '') }),
+      //...(isAmmV4 ? {} : { feeConfig: yup.mixed().required(t('common.select') + t('field.fee_tier') ?? '') }), TEW might cause issues
+      ...(isAmmV4 ? {} : { feeConfig: yup.mixed().required(t('common.select') + t('field.fee_tier')) }),
       ...(isAmmV4
         ? {
             liquidity: yup.mixed().test('is-liquidity-valid', t('error.initial_liquidity_low') ?? 'initial liquidity too low', function () {

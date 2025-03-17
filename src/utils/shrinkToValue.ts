@@ -8,5 +8,6 @@ export type MayFn<T, Params extends any[] = any[]> = T | ((...params: Params) =>
  * @returns a pure value which can't be a function
  */
 export function shrinkToValue<T>(mayValue: T, params?: T extends AnyFn ? Parameters<T> : any[]): Exclude<T, AnyFn> {
+  // @ts-ignore
   return typeof mayValue === 'function' ? mayValue(...(params ?? [])) : mayValue
 }

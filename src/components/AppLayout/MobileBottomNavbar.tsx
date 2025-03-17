@@ -1,16 +1,17 @@
-import { Box, ColorMode, Menu, MenuButton, SimpleGrid, Text, VStack, useColorMode } from '@chakra-ui/react'
+import { Box, ColorMode, type ColorModeContextType, Menu, MenuButton, SimpleGrid, Text, useColorMode, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import LiquidityPageThumbnailIcon from '@/icons/pageNavigation/LiquidityPageThumbnailIcon'
 import MorePageThumbnailIcon from '@/icons/pageNavigation/MoreThumbnailIcon'
 import PortfolioPageThumbnailIcon from '@/icons/pageNavigation/PortfolioPageThumbnailIcon'
 import SwapPageThumbnailIcon from '@/icons/pageNavigation/SwapPageThumbnailIcon'
 import { colors } from '@/theme/cssVariables'
-import { NavMoreButtonMenuPanel } from './components/NavMoreButtonMenuPanel'
 import { shrinkToValue } from '@/utils/shrinkToValue'
-import { useTranslation } from 'react-i18next'
+
+import { NavMoreButtonMenuPanel } from './components/NavMoreButtonMenuPanel'
 
 /** only used is Mobile */
 export function MobileBottomNavbar() {
@@ -81,9 +82,11 @@ function BottomNavbarItem({
 }) {
   const { colorMode } = useColorMode()
   const isDark = colorMode === 'dark'
+
+  // <Box>{shrinkToValue(icon, [colorMode])}</Box> ... TEW may cause issues
   const content = (
     <VStack spacing={'6px'}>
-      <Box>{shrinkToValue(icon, [colorMode])}</Box>
+      <Box>{shrinkToValue(icon, typeof icon === 'function' ? ([colorMode] as any) : undefined)}</Box>
       <Text
         color={isActive ? (isDark ? colors.textPrimary : colors.secondary) : colors.textSecondary}
         fontSize="9px"
