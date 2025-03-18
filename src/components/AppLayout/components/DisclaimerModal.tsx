@@ -1,21 +1,12 @@
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalBody,
-  ModalFooter,
-  Button,
-  Checkbox,
-  Text,
-  Box,
-  VStack,
-  Flex,
-  useDisclosure
+  Box, Button, Checkbox, Flex, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Text, useDisclosure, VStack
 } from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
 import { colors } from '@/theme/cssVariables'
-import { setStorageItem, getStorageItem } from '@/utils/localStorage'
+import { getStorageItem, setStorageItem } from '@/utils/localStorage'
+
 const DISCLAIMER_KEY = '_r_have_agreed_disclaimer_'
 
 function DisclaimerModal() {
@@ -73,9 +64,9 @@ function DisclaimerModal() {
                 {t('disclaimer.text4')}
               </Text>
             </Box>
-            <Flex width="full" justifyContent="flex-start">
-              <Checkbox isChecked={userHaveAgree} onChange={(e) => setUserHaveAgree(e.target.checked)}>
-                <Text fontSize="sm" fontWeight="medium" color={colors.textPrimary}>
+            <Flex width="full" justifyContent="flex-start" alignItems="flex-start">
+              <Checkbox isChecked={userHaveAgree} onChange={(e) => setUserHaveAgree(e.target.checked)} alignItems="flex-start">
+                <Text fontSize="sm" fontWeight="medium" color={colors.textPrimary} display="inline-flex">
                   {t('disclaimer.agree_terms')}
                 </Text>
               </Checkbox>

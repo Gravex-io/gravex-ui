@@ -47,7 +47,7 @@ export default function CreatePool() {
             cursor="pointer"
             onClick={() => {
               router.push({
-                pathname: '/liquidity-pools'
+                pathname: '/gravity-coins'
               })
             }}
             color={colors.textTertiary}

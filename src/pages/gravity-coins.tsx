@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+
 const Pools = dynamic(() => import('@/features/Pools'))
 
 function LiquidityPoolsPage() {
@@ -9,6 +10,6 @@ export default LiquidityPoolsPage
 
 export async function getStaticProps() {
   return {
-    props: { title: 'Liquidity Pools' }
+    props: { title: 'Gravity Coins' }
   }
 }

@@ -66,7 +66,7 @@ const pageRoutePathnames: Record<keyof PageRouteConfigs, string> = {
   'edit-farm': '/farms/edit',
   portfolio: '/portfolio',
   staking: '/staking',
-  pools: '/liquidity-pools',
+  pools: '/gravity-coins',
   'increase-liquidity': '/liquidity/increase',
   'decrease-liquidity': '/liquidity/decrease',
   'create-farm': '/liquidity/create-farm',

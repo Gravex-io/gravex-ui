@@ -1,18 +1,5 @@
 import {
-  Box,
-  Flex,
-  HStack,
-  Image,
-  Menu,
-  MenuButton,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  Text,
-  Tooltip
+  Box, Flex, HStack, Image, Menu, MenuButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, Tooltip
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -72,7 +59,7 @@ function AppNavLayout({
         <Desktop>
           <Box flex={'none'} width="40px" height="40px">
             <Tooltip label="Search for Gravity Coins" hasArrow bg="gray.700" color="white">
-              <Link href="/liquidity-pools">
+              <Link href="/gravity-coins">
                 <Image src="/images/logo64.png" alt="Raydium Logo" boxSize="40px" fit="cover" borderRadius="full" />
               </Link>
             </Tooltip>
@@ -84,7 +71,7 @@ function AppNavLayout({
             <Text fontSize="xl" fontWeight="medium" color={colors.textSecondary}>
               {pathname === '/swap'
                 ? t('swap.title')
-                : pathname === '/liquidity-pools'
+                : pathname === '/gravity-coins'
                 ? t('liquidity.pools')
                 : pathname === '/portfolio'
                 ? t('portfolio.title')
@@ -102,7 +89,7 @@ function AppNavLayout({
         {/* nav routes */}
         <Desktop>
           <HStack flexGrow={1} justify="start" overflow={['auto', 'visible']} gap={15}>
-            <RouteLink href="/liquidity-pools" isActive={pathname.includes('/liquidity')} title={t('liquidity.pools')} />
+            <RouteLink href="/gravity-coins" isActive={pathname.includes('/gravity')} title={t('liquidity.pools')} />
             <RouteLink href="/swap" isActive={pathname === '/swap'} title={t('swap.title')} />
             <RouteLink href="/portfolio" isActive={pathname === '/portfolio'} title={t('portfolio.title')} />
           </HStack>

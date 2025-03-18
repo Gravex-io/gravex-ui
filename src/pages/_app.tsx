@@ -1,36 +1,42 @@
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { getCookie } from 'cookies-next'
+import Decimal from 'decimal.js'
 import type { AppContext, AppProps } from 'next/app'
 import App from 'next/app'
-import Head from 'next/head'
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
-import Decimal from 'decimal.js'
+import { useEffect, useMemo } from 'react'
 
 import i18n from '../i18n'
 import { isClient } from '../utils/common'
+
 import '@/components/Toast/toast.css'
 import '@/components/LandingPage/components/tvl.css'
 import '@/components/LandingPage/liquidity.css'
 import 'react-day-picker/dist/style.css'
-import { GoogleAnalytics } from '@next/third-parties/google'
 
 const DynamicProviders = dynamic(() => import('@/provider').then((mod) => mod.Providers))
 const DynamicContent = dynamic(() => import('@/components/Content'))
 const DynamicAppNavLayout = dynamic(() => import('@/components/AppLayout/AppNavLayout'), { ssr: false })
 
 const CONTENT_ONLY_PATH = ['/', '404', '/moonpay']
-const OVERFLOW_HIDDEN_PATH = ['/liquidity-pools']
+const OVERFLOW_HIDDEN_PATH = ['/gravity-coins']
 
 Decimal.set({ precision: 1e3 })
 
 const MyApp = ({ Component, pageProps, ...props }: AppProps) => {
   const { pathname } = useRouter()
+  const router = useRouter()
 
   const [onlyContent, overflowHidden] = useMemo(
     () => [CONTENT_ONLY_PATH.includes(pathname), OVERFLOW_HIDDEN_PATH.includes(pathname)],
     [pathname]
   )
+
+  useEffect(() => {
+    console.log('Current Route:', router.pathname)
+  }, [router.pathname])
 
   return (
     <>

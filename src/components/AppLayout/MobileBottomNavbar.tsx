@@ -21,7 +21,7 @@ export function MobileBottomNavbar() {
   const { pathname } = useRouter()
   const swapHref = '/swap'
   const isSwapActive = pathname === swapHref
-  const liquidityHref = '/liquidity-pools'
+  const liquidityHref = '/gravity-coins'
   const isLiquidityActive = pathname === liquidityHref
   const protfolioHref = '/portfolio'
   const isPortfolioActive = pathname === protfolioHref

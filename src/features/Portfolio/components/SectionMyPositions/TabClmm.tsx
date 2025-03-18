@@ -110,7 +110,7 @@ const ClmmMyPositionTabContent = memo(
             <Text variant="title" fontSize="sm">
               {t('clmm.no_clmm_positions')}
             </Text>
-            <Link href="/liquidity-pools">
+            <Link href="/gravity-coins">
               <Button>{t('common.go_to_pools')}</Button>
             </Link>
           </Flex>

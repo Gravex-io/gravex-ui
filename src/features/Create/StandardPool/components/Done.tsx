@@ -38,7 +38,7 @@ export default function Done() {
 
   if (!isLoading && (mode === undefined || ammId === undefined)) {
     // do something when mode is not 'done' and ammId is undeinfed
-    router.push('/liquidity-pools')
+    router.push('/gravity-coins')
     return null
   }
 

@@ -117,7 +117,7 @@ export default function MyPositionTabStandard({
           <Text variant="title" fontSize="sm">
             {t('portfolio.no_standard_positions')}
           </Text>
-          <Link href="/liquidity-pools">
+          <Link href="/gravity-coins">
             <Button>{t('common.go_to_pools')}</Button>
           </Link>
         </Flex>
