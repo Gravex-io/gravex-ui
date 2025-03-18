@@ -6,7 +6,7 @@ import App from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 
 import i18n from '../i18n'
 import { isClient } from '../utils/common'
@@ -27,20 +27,15 @@ Decimal.set({ precision: 1e3 })
 
 const MyApp = ({ Component, pageProps, ...props }: AppProps) => {
   const { pathname } = useRouter()
-  const router = useRouter()
 
   const [onlyContent, overflowHidden] = useMemo(
     () => [CONTENT_ONLY_PATH.includes(pathname), OVERFLOW_HIDDEN_PATH.includes(pathname)],
     [pathname]
   )
 
-  useEffect(() => {
-    console.log('Current Route:', router.pathname)
-  }, [router.pathname])
-
   return (
     <>
-      <GoogleAnalytics gaId="G-DR3V6FTKE3" />
+      {/*<GoogleAnalytics gaId="G-DR3V6FTKE3" /> */}
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta name="twitter:image" content="https://img-v1.raydium.io/share/7be7ee6c-56b2-451e-a010-6c21e0db2ee5.png" />

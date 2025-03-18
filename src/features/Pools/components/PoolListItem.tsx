@@ -1,25 +1,14 @@
 import {
-  Box,
-  Center,
-  Flex,
-  Grid,
-  GridItem,
-  Highlight,
-  HStack,
-  Image,
-  Tag,
-  Text,
-  useColorMode,
-  useDisclosure,
-  VStack
+  Box, Center, Flex, Grid, GridItem, Highlight, HStack, Image, Tag, Text, useColorMode, useDisclosure, VStack
 } from '@chakra-ui/react'
+import dayjs from 'dayjs'
 import router from 'next/router'
 import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import dayjs from 'dayjs'
-import { wSolToSol } from '@/utils/token'
+
 import AddressChip from '@/components/AddressChip'
 import Button from '@/components/Button'
+import LockPercentCircle from '@/components/LockPercentCircle'
 import { Desktop, Mobile } from '@/components/MobileDesktop'
 import PanelCard from '@/components/PanelCard'
 import TokenAvatar from '@/components/TokenAvatar'
@@ -27,24 +16,26 @@ import TokenAvatarPair from '@/components/TokenAvatarPair'
 import Tooltip from '@/components/Tooltip'
 import { AprKey, FormattedPoolInfoItem } from '@/hooks/pool/type'
 import ChartInfoIcon from '@/icons/misc/ChartInfoIcon'
-import SwapPoolItemIcon from '@/icons/misc/SwapPoolItemIcon'
 import OpenBookIcon from '@/icons/misc/OpenBookIcon'
 import PulseIcon from '@/icons/misc/PulseIcon'
 import QuestionCircleIcon from '@/icons/misc/QuestionCircleIcon'
 import StarIcon from '@/icons/misc/StarIcon'
+import SwapPoolItemIcon from '@/icons/misc/SwapPoolItemIcon'
 import { useAppStore } from '@/store'
 import { colors } from '@/theme/cssVariables'
 import { formatCurrency, formatToRawLocaleStr } from '@/utils/numberish/formatter'
 import toPercentString from '@/utils/numberish/toPercentString'
+import { wSolToSol } from '@/utils/token'
+
 import { poolListGrid } from '../cssBlocks'
 import { TimeBase } from '../Pools'
 import { getFavoritePoolCache, setFavoritePoolCache, toAPRPercent } from '../util'
+
 import PoolDetailMobileDrawer from './PoolDetailMobileDrawer'
 import PoolListItemAprDetailPopoverContent from './PoolListItemAprDetailPopoverContent'
 import { aprColors, PoolListItemAprLine } from './PoolListItemAprLine'
 import { PoolListItemAprPie } from './PoolListItemAprPie'
 import { PoolListItemRewardStack } from './PoolListItemRewardStack'
-import LockPercentCircle from '@/components/LockPercentCircle'
 
 export default function PoolListItem({
   styleType = 'list',
@@ -161,6 +152,7 @@ export default function PoolListItem({
 
             <Tooltip
               label={
+                //So11111111111111111111111111111111111111112
                 <Box py={0.5}>
                   <AddressChip address={pool.id} renderLabel={`${t('common.pool_id')}:`} mb="2" textProps={{ fontSize: 'xs' }} />
                   <AddressChip

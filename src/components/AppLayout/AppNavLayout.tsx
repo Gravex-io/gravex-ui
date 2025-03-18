@@ -60,14 +60,14 @@ function AppNavLayout({
           <Box flex={'none'} width="40px" height="40px">
             <Tooltip label="Search for Gravity Coins" hasArrow bg="gray.700" color="white">
               <Link href="/gravity-coins">
-                <Image src="/images/logo64.png" alt="Raydium Logo" boxSize="40px" fit="cover" borderRadius="full" />
+                <Image src="/images/logo64.png" alt="Gravex Logo" boxSize="40px" fit="cover" borderRadius="full" />
               </Link>
             </Tooltip>
           </Box>
         </Desktop>
         <Mobile>
           <HStack>
-            <Image src="/images/logo64.png" alt="Raydium Logo" boxSize="30px" fit="cover" borderRadius="full" />
+            <Image src="/images/logo64.png" alt="Gravex Logo" boxSize="30px" fit="cover" borderRadius="full" />
             <Text fontSize="xl" fontWeight="medium" color={colors.textSecondary}>
               {pathname === '/swap'
                 ? t('swap.title')

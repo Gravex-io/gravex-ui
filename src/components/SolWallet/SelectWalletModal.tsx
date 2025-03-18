@@ -1,46 +1,30 @@
+import {
+  Box, Button, Collapse, Flex, HStack, Image, Link, ListItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay,
+  SimpleGrid, Switch, Text, UnorderedList, useColorMode
+} from '@chakra-ui/react'
+import { WalletReadyState } from '@solana/wallet-adapter-base'
+import { Wallet } from '@solana/wallet-adapter-react'
+import NextLink from 'next/link'
+import { useCallback, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+
+import { MoonpayBuy } from '@/components/Moonpay'
+import { QuestionToolTip } from '@/components/QuestionToolTip'
 import ChevronRightIcon from '@/icons/misc/ChevronRightIcon'
-// import TealCircleCheckBadge from '@/icons/misc/TealCircleCheckBadge'
-import WalletSelectEggIcon from '@/icons/misc/WalletSelectEggIcon'
-import WalletSelectWalletIcon from '@/icons/misc/WalletSelectWalletIcon'
+import DesktopIcon from '@/icons/misc/DesktopIcon'
+import ExternalLink from '@/icons/misc/ExternalLink'
 // import AvalancheNetworkIcon from '@/icons/networks/AvalancheNetworkIcon'
 // import BinanceNetworkIcon from '@/icons/networks/BinanceNetworkIcon'
 // import EthereumNetworkIcon from '@/icons/networks/EthereumNetworkIcon'
 // import PolygonNetworkIcon from '@/icons/networks/PolygonNetworkIcon'
 // import SolanaNetworkIcon from '@/icons/networks/SolanaNetworkIcon'
 import MobileIcon from '@/icons/misc/MobileIcon'
-import DesktopIcon from '@/icons/misc/DesktopIcon'
 import MoonPayIconWithText from '@/icons/misc/MoonPayIconWithText'
-import { QuestionToolTip } from '@/components/QuestionToolTip'
-import { MoonpayBuy } from '@/components/Moonpay'
-import ExternalLink from '@/icons/misc/ExternalLink'
-import { colors } from '@/theme/cssVariables'
-import {
-  Box,
-  Button,
-  Collapse,
-  Flex,
-  HStack,
-  Image,
-  Link,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  SimpleGrid,
-  Switch,
-  Text,
-  UnorderedList,
-  ListItem,
-  useColorMode
-} from '@chakra-ui/react'
-import { WalletReadyState } from '@solana/wallet-adapter-base'
-import { Wallet } from '@solana/wallet-adapter-react'
-import { useState, useCallback } from 'react'
-import { useTranslation, Trans } from 'react-i18next'
-import NextLink from 'next/link'
+// import TealCircleCheckBadge from '@/icons/misc/TealCircleCheckBadge'
+import WalletSelectEggIcon from '@/icons/misc/WalletSelectEggIcon'
+import WalletSelectWalletIcon from '@/icons/misc/WalletSelectWalletIcon'
 import { useAppStore } from '@/store'
+import { colors } from '@/theme/cssVariables'
 
 interface Props {
   wallets: Wallet[]
@@ -156,7 +140,7 @@ export default function SelectWalletModal({ wallets, isOpen, onSelectWallet, onC
             <Box overflow={'hidden'} display={'flex'} flexDirection={'column'}>
               <Box mb={5} color={colors.textTertiary} bg={colors.backgroundTransparent07} p={3} fontSize={['xs', 'sm']} rounded="md">
                 {t('wallet_connect_panel.desc')}{' '}
-                <Link href="https://raydium.io/docs/disclaimer/" isExternal>
+                <Link href="https://gravex.io/docs/disclaimer/" isExternal>
                   {t('wallet_connect_panel.desc_link')}
                 </Link>
               </Box>
