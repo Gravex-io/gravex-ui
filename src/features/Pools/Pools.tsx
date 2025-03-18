@@ -1,20 +1,6 @@
 import {
-  Box,
-  Collapse,
-  Flex,
-  FormControl,
-  FormLabel,
-  Grid,
-  GridItem,
-  HStack,
-  Stack,
-  Switch,
-  Tag,
-  Text,
-  useBreakpointValue,
-  useOutsideClick,
-  useDisclosure,
-  useUpdateEffect
+  Box, Collapse, Flex, FormControl, FormLabel, Grid, GridItem, HStack, Stack, Switch, Tag, Text, useBreakpointValue, useDisclosure,
+  useOutsideClick, useUpdateEffect
 } from '@chakra-ui/react'
 import { ApiV3Token, FetchPoolParams, PoolFetchType } from '@gravexio/gravex-sdk'
 import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -36,19 +22,24 @@ import useFetchPoolList from '@/hooks/pool/useFetchPoolList'
 import { useEvent } from '@/hooks/useEvent'
 import usePrevious from '@/hooks/usePrevious'
 import useSort from '@/hooks/useSort'
+import i18n from '@/i18n'
 import GridIcon from '@/icons/misc/GridIcon'
 import ListIcon from '@/icons/misc/ListIcon'
-import SearchIcon from '@/icons/misc/SearchIcon'
 import MoreListControllers from '@/icons/misc/MoreListControllers'
 import NotFound from '@/icons/misc/NotFound'
 import OpenBookIcon from '@/icons/misc/OpenBookIcon'
+import SearchIcon from '@/icons/misc/SearchIcon'
 import { useAppStore, useTokenStore } from '@/store'
 import { colors } from '@/theme/cssVariables'
 import { appLayoutPaddingX, revertAppLayoutPaddingX } from '@/theme/detailConfig'
-import { isValidPublicKey } from '@/utils/publicKey'
-import toPercentString from '@/utils/numberish/toPercentString'
 import { formatToRawLocaleStr } from '@/utils/numberish/formatter'
+import toPercentString from '@/utils/numberish/toPercentString'
+import { isValidPublicKey } from '@/utils/publicKey'
+import { setUrlQuery, useRouteQuery } from '@/utils/routeTools'
+import { mintToUrl, urlToMint } from '@/utils/token'
+
 import { useEffectWithUrl, useStateWithUrl } from '../../hooks/useStateWithUrl'
+
 import CreatePoolButton from './components/CreatePoolButton'
 import PoolChartModal from './components/PoolChart'
 import PoolItemLoadingSkeleton from './components/PoolItemLoadingSkeleton'
@@ -57,9 +48,6 @@ import PoolListItem from './components/PoolListItem'
 import TVLInfoPanel, { TVLInfoPanelMobile } from './components/TVLInfoPanel'
 import { useScrollTitleCollapse } from './useScrollTitleCollapse'
 import { getFavoritePoolCache, POOL_SORT_KEY } from './util'
-import i18n from '@/i18n'
-import { setUrlQuery, useRouteQuery } from '@/utils/routeTools'
-import { urlToMint, mintToUrl } from '@/utils/token'
 
 export type PoolPageQuery = {
   token?: string
@@ -252,7 +240,9 @@ export default function Pools() {
   }, [activeTabItem, currentLayoutStyle, showFarms, timeBase])
 
   const search = searchTokens.reduce((acc, cur) => acc + ',' + cur.address, '')
-  const hasSearch = searchTokens.length > 0
+
+  // TEW Removed to restrict to standard liquidity pools only
+  /*const hasSearch = searchTokens.length > 0
   const {
     formattedData: orgData,
     loadMore: orgLoadMore,
@@ -262,6 +252,20 @@ export default function Pools() {
     showFarms,
     shouldFetch: !hasSearch,
     type: activeTabItem.value,
+    order: order ? 'desc' : 'asc',
+    sort: sortKey !== 'liquidity' && sortKey !== 'default' ? `${sortKey}${timeBase}` : sortKey
+  })*/
+
+  const hasSearch = searchTokens.length > 0
+  const {
+    formattedData: orgData,
+    loadMore: orgLoadMore,
+    isLoadEnded: isOrgLoadedEnd,
+    isLoading: isOrgLoading
+  } = useFetchPoolList({
+    showFarms: false,
+    shouldFetch: !hasSearch,
+    type: PoolFetchType.Standard, // ✅ Ensure only standard pools are fetched
     order: order ? 'desc' : 'asc',
     sort: sortKey !== 'liquidity' && sortKey !== 'default' ? `${sortKey}${timeBase}` : sortKey
   })
@@ -368,6 +372,17 @@ export default function Pools() {
       }
     }
   })
+
+  /* was under desktop below 
+  <Tabs
+                  items={tabItems}
+                  size={['sm', 'xl']}
+                  tabItemSX={{ px: '4px !important' }}
+                  value={activeTabItem.value}
+                  onChange={onPoolValueChange}
+                  variant="line"
+                />
+  */
   return (
     <>
       <Flex flexDirection="column" height={'100%'} flexGrow={1} {...containerProps}>
@@ -413,16 +428,7 @@ export default function Pools() {
             backgroundColor={['transparent', colors.backgroundLight30]}
           >
             <GridItem area={'tabs'}>
-              <Desktop>
-                <Tabs
-                  items={tabItems}
-                  size={['sm', 'xl']}
-                  tabItemSX={{ px: '4px !important' }}
-                  value={activeTabItem.value}
-                  onChange={onPoolValueChange}
-                  variant="line"
-                />
-              </Desktop>
+              <Desktop></Desktop>
               <Mobile>
                 <Select
                   sx={({ isPanelOpen }) => ({

@@ -1,24 +1,20 @@
+import { Box, Flex, HStack, Link, MenuDivider, MenuItem, MenuList, Text } from '@chakra-ui/react'
+import NextLink from 'next/link'
+import { useTranslation } from 'react-i18next'
+
 import DiscardMediaIcon from '@/icons/media/DiscardMediaIcon'
 import TelegrameMediaIcon from '@/icons/media/TelegrameMediaIcon'
 import TwitterMediaIcon from '@/icons/media/TwitterMediaIcon'
 import ExternalLink from '@/icons/misc/ExternalLink'
+import BridgePageThumbnailIcon from '@/icons/pageNavigation/BridgePageThumbnailIcon'
+import DisclaimerThumbnailIcon from '@/icons/pageNavigation/DisclaimerThumbnailIcon'
 import DocThumbnailIcon from '@/icons/pageNavigation/DocThumbnailIcon'
 import FeedbackThumbnailIcon from '@/icons/pageNavigation/FeedbackThumbnailIcon'
 import StakingPageThumbnailIcon from '@/icons/pageNavigation/StakingPageThumbnailIcon'
-import BridgePageThumbnailIcon from '@/icons/pageNavigation/BridgePageThumbnailIcon'
-import DisclaimerThumbnailIcon from '@/icons/pageNavigation/DisclaimerThumbnailIcon'
 import { colors } from '@/theme/cssVariables'
-import { Box, Flex, HStack, MenuDivider, MenuItem, MenuList, Text, Link } from '@chakra-ui/react'
-import NextLink from 'next/link'
 
-import { useTranslation } from 'react-i18next'
-
-export function NavMoreButtonMenuPanel() {
-  const { t } = useTranslation()
-  return (
-    <MenuList>
-      <Box py={3}>
-        <MenuItem>
+/**
+  <MenuItem>
           <Link as={NextLink} _hover={{ textDecoration: 'none' }} w="full" href="/staking">
             <HStack>
               <StakingPageThumbnailIcon />
@@ -35,6 +31,13 @@ export function NavMoreButtonMenuPanel() {
           </Link>
         </MenuItem>
         <MenuDivider />
+ */
+
+export function NavMoreButtonMenuPanel() {
+  const { t } = useTranslation()
+  return (
+    <MenuList>
+      <Box py={3}>
         <MenuItem>
           <Link as={NextLink} href="/docs/disclaimer" _hover={{ textDecoration: 'none' }} w="full" isExternal>
             <HStack>

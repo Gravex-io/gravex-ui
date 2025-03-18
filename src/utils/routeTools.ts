@@ -3,16 +3,17 @@
  */
 import { MayFunction, TokenInfo } from '@gravexio/gravex-sdk'
 import router, { useRouter } from 'next/router'
-
 import { ParsedUrlQuery } from 'querystring'
-import { shrinkToValue } from './shrinkToValue'
-import { shakeObjectUndefinedItems } from './objectTools'
-import { StakingPageQuery } from '@/features/Staking/Staking'
-import { PoolPageQuery } from '@/features/Pools/Pools'
+
 import { DecreaseLiquidityPageQuery } from '@/features/Liquidity/Decrease'
 import { IncreaseLiquidityPageQuery } from '@/features/Liquidity/Increase'
+import { PoolPageQuery } from '@/features/Pools/Pools'
 import { PortfolioPageQuery } from '@/features/Portfolio'
+import { StakingPageQuery } from '@/features/Staking/Staking'
 import { isClient } from '@/utils/common'
+
+import { shakeObjectUndefinedItems } from './objectTools'
+import { shrinkToValue } from './shrinkToValue'
 
 type EditFarmPageQuery = {
   farmId?: string

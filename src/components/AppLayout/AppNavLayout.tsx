@@ -53,14 +53,14 @@ function AppNavLayout({
         flex="none"
         height={['64px', '80px']}
         px={['20px', '38px']}
-        gap={['4px', 'max(64px, 6.1vw)']}
+        gap={['4px', '8px']}
         alignItems="center"
         justifyContent="space-between"
       >
         {/* logo */}
         <Desktop>
           <Box flex={'none'}>
-            <Link href="/swap">
+            <Link href="/liquidity-pools">
               <RaydiumLogo />
             </Link>
           </Box>
@@ -89,28 +89,27 @@ function AppNavLayout({
         {/* nav routes */}
         <Desktop>
           <HStack flexGrow={1} justify="start" overflow={['auto', 'visible']} gap={15}>
-            <RouteLink href="/swap" isActive={pathname === '/swap'} title={t('swap.title')} />
             <RouteLink href="/liquidity-pools" isActive={pathname.includes('/liquidity')} title={t('liquidity.title')} />
+            <RouteLink href="/swap" isActive={pathname === '/swap'} title={t('swap.title')} />
             <RouteLink href="/portfolio" isActive={pathname === '/portfolio'} title={t('portfolio.title')} />
-
-            <Menu size="lg">
-              <MenuButton fontSize={'lg'} px={4} py={2}>
-                <Flex
-                  align="center"
-                  gap={0.5}
-                  color={pathname === '/staking' || pathname === '/bridge' ? colors.textSecondary : colors.textTertiary}
-                >
-                  {pathname === '/staking' ? t('staking.title') : pathname === '/bridge' ? t('bridge.title') : t('common.more')}
-                  <ChevronDownIcon width={16} height={16} />
-                </Flex>
-              </MenuButton>
-              <NavMoreButtonMenuPanel />
-            </Menu>
           </HStack>
         </Desktop>
 
         {/* wallet button */}
         <Flex gap={[0.5, 2]} align="center">
+          <Menu size="lg">
+            <MenuButton fontSize={'lg'} px={4} py={2}>
+              <Flex
+                align="center"
+                gap={0.5}
+                color={pathname === '/staking' || pathname === '/bridge' ? colors.textSecondary : colors.textTertiary}
+              >
+                {pathname === '/staking' ? t('staking.title') : pathname === '/bridge' ? t('bridge.title') : t('common.more')}
+                <ChevronDownIcon width={16} height={16} />
+              </Flex>
+            </MenuButton>
+            <NavMoreButtonMenuPanel />
+          </Menu>
           <PriorityButton />
           <SettingsMenu />
           {/* <EVMWallet />  don't need currently yet*/}

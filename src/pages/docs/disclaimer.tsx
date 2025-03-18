@@ -1,4 +1,5 @@
-import { Box, Container, VStack, Text } from '@chakra-ui/react'
+import { Box, Container, Text, VStack } from '@chakra-ui/react'
+
 import { colors } from '@/theme/cssVariables'
 
 export default function DisclaimerPage() {
@@ -20,11 +21,11 @@ export default function DisclaimerPage() {
           >
             <Text fontSize={{ base: 'sm', md: 'md' }} lineHeight={1.625}>
               This website-hosted user interface (this “Interface”) is an open source frontend software portal to the Gravex protocol, a
-              decentralized and community-driven collection of blockchain-enabled smart contracts and tools (the “Raydium Protocol”). This
-              Interface and the Gravex Protocol are made available by Gravex however all transactions conducted on the protocol are run by
-              related permissionless smart contracts. As the Interface is open-sourced and the Gravex Protocol and its related smart
-              contracts are accessible by any user, entity or third party, there are a number of third party web and mobile user-interfaces
-              that allow for interaction with the Gravex Protocol.
+              decentralized blockchain-enabled Gravity Coin smart contract and tools (the “Gravex Protocol”). This Interface and the Gravex
+              Protocol are made available by Gravex however all transactions conducted on the protocol are run by related permissionless
+              smart contracts. As the Interface is open-sourced and the Gravex Protocol and its related smart contracts are accessible by
+              any user, entity or third party, there are a number of third party web and mobile user-interfaces that allow for interaction
+              with the Gravex Protocol.
             </Text>
             <Text fontSize={{ base: 'sm', md: 'md' }} lineHeight={1.625}>
               THIS INTERFACE AND THE GRAVEX PROTOCOL ARE PROVIDED “AS IS”, AT YOUR OWN RISK, AND WITHOUT WARRANTIES OF ANY KIND. The Gravex
