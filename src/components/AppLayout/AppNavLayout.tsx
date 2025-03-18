@@ -1,5 +1,18 @@
 import {
-  Box, Flex, HStack, Menu, MenuButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text
+  Box,
+  Flex,
+  HStack,
+  Image,
+  Menu,
+  MenuButton,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+  Tooltip
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -9,8 +22,6 @@ import { useTranslation } from 'react-i18next'
 import { useDisclosure } from '@/hooks/useDelayDisclosure'
 import ChevronDownIcon from '@/icons/misc/ChevronDownIcon'
 import Gear from '@/icons/misc/Gear'
-import RaydiumLogo from '@/icons/RaydiumLogo'
-import RaydiumLogoOutline from '@/icons/RaydiumLogoOutline'
 import { useAppStore } from '@/store'
 import { colors } from '@/theme/cssVariables'
 import { appLayoutPaddingX } from '@/theme/detailConfig'
@@ -59,15 +70,17 @@ function AppNavLayout({
       >
         {/* logo */}
         <Desktop>
-          <Box flex={'none'}>
-            <Link href="/liquidity-pools">
-              <RaydiumLogo />
-            </Link>
+          <Box flex={'none'} width="40px" height="40px">
+            <Tooltip label="Search for Gravity Coins" hasArrow bg="gray.700" color="white">
+              <Link href="/liquidity-pools">
+                <Image src="/images/logo64.png" alt="Raydium Logo" boxSize="40px" fit="cover" borderRadius="full" />
+              </Link>
+            </Tooltip>
           </Box>
         </Desktop>
         <Mobile>
           <HStack>
-            <RaydiumLogoOutline />
+            <Image src="/images/logo64.png" alt="Raydium Logo" boxSize="30px" fit="cover" borderRadius="full" />
             <Text fontSize="xl" fontWeight="medium" color={colors.textSecondary}>
               {pathname === '/swap'
                 ? t('swap.title')

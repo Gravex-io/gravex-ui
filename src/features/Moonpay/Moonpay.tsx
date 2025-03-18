@@ -1,18 +1,18 @@
-import React, { useMemo } from 'react'
 import { Box, Flex, Image, Text, useColorMode, useMediaQuery } from '@chakra-ui/react'
-import { useTranslation } from 'react-i18next'
-import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets'
 import { WalletReadyState } from '@solana/wallet-adapter-base'
-import RaydiumLogo from '@/icons/RaydiumLogo'
-import MoonPayIcon from '@/icons/misc/MoonPayIcon'
-import Plus from '@/icons/misc/Plus'
-import Phantom from '@/icons/misc/Phantom'
-import SolGrey from '@/icons/misc/SolGrey'
-import Cart from '@/icons/misc/Cart'
+import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets'
+import React, { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+
 import AppNavLayout from '@/components/AppLayout/AppNavLayout'
 import WalletOnramp from '@/components/SolWallet/WalletOnramp'
-import { colors } from '@/theme/cssVariables'
 import useResponsive from '@/hooks/useResponsive'
+import Cart from '@/icons/misc/Cart'
+import MoonPayIcon from '@/icons/misc/MoonPayIcon'
+import Phantom from '@/icons/misc/Phantom'
+import Plus from '@/icons/misc/Plus'
+import SolGrey from '@/icons/misc/SolGrey'
+import { colors } from '@/theme/cssVariables'
 
 export default function MoonpayPage() {
   const { t } = useTranslation()
@@ -85,7 +85,7 @@ export default function MoonpayPage() {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <RaydiumLogo width="64" height="64" />
+                  <Image src="/images/logo64.png" alt="Raydium Logo" boxSize="30px" fit="cover" borderRadius="full" />
                 </Flex>
                 <Plus width="25px" height="25px" color="#8d93b7" />
                 <Flex
