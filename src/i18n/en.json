@@ -4,7 +4,7 @@
     "playground": "playground",
     "disabled": "Disabled",
     "all": "All",
-    "search_all": "Search all",
+    "search_all": "Search Gravity Coins",
     "layout": "Layout",
     "list": "list",
     "grid": "grid",
@@ -221,7 +221,7 @@
     "total_value": "Total value"
   },
   "swap": {
-    "title": "Swap",
+    "title": "Trade",
     "from_label": "From",
     "to_label": "To",
     "info_minimum_received": "Minimum Received",
@@ -271,7 +271,7 @@
     "farms": "Farms"
   },
   "liquidity": {
-    "title": "Liquidity",
+    "title": "SOL Value",
     "pools": "Gravity Coins",
     "pool_info": "Coin Info",
     "pools_desc": "Gravity Based Smart Trading Contracts",
@@ -280,7 +280,7 @@
     "pool": "Gravity Coin",
     "fee_rate": "Fee Rate",
     "show_farms": "Show Farms",
-    "create_pool": "Create",
+    "create_pool": "New Coin",
     "create_pool_tx_title": "Create pool",
     "create_pool_tx_desc": "create <sub>{{mintA}} - {{mintB}}</sub> pool",
     "value": "value",
@@ -394,7 +394,7 @@
     "pool_detail": "Pool detail"
   },
   "create_pool": {
-    "modal_title": "I want to...",
+    "modal_title": "Create Gravity Coin",
     "pool_type": "Pool type:",
     "modal_tab_standard_amm": "Standard AMM",
     "modal_tab_standard_amm_desc": "Newest CPMM, cheaper, supports Token 2022",
@@ -629,7 +629,7 @@
   "input": {
     "max_button": "Max",
     "search_for_a_pair_or_enter_amm_id": "Search for a pair or enter AMM ID",
-    "enter_search_token": "Search for token or paste mint address.",
+    "enter_search_token": "Search for Gravity Coint Name or paste its mint address.",
     "search_amm_title": "Search for a pair or paste AMM ID",
     "placeholder_input_amm_id": "input AmmId / TVL",
     "enter_custom_value": "Enter custom value"
@@ -851,7 +851,7 @@
     "text2": "THIS INTERFACE AND THE Gravex PROTOCOL ARE PROVIDED \"AS IS\", AT YOUR OWN RISK, AND WITHOUT WARRANTIES OF ANY KIND. The Gravex  does not provide, own, or control the Gravex Protocol or any transactions conducted on the protocol or via related smart contracts. By using or accessing this Interface or the Gravex Protocol and related smart contracts, you agree that no developer or entity involved in creating, deploying or maintaining this Interface or the Gravex Protocol will be liable for any claims or damages whatsoever associated with your use, inability to use, or your interaction with other users of, this Interface or the Gravex Protocol, including any direct, indirect, incidental, special, exemplary, punitive or consequential damages, or loss of profits, digital assets, tokens, or anything else of value.",
     "text3": "The Gravex Protocol is not available to residents of Belarus, the Central African Republic, The Democratic Republic of Congo, the Democratic People's Republic of Korea, the Crimea, Donetsk People's Republic, and Luhansk People's Republic regions of Ukraine, Cuba, Iran, Libya, Somalia, Sudan, South Sudan, Syria, the USA, Yemen, Zimbabwe and any other jurisdiction in which accessing or using the Gravex Protocol is prohibited (the \"Prohibited Jurisdictions\").",
     "text4": "By using or accessing this Interface, the Gravex Protocol, or related smart contracts, you represent that you are not located in, incorporated or established in, or a citizen or resident of the Prohibited Jurisdictions. You also represent that you are not subject to sanctions or otherwise designated on any list of prohibited or restricted parties or excluded or denied persons, including but not limited to the lists maintained by the United States' Department of Treasury's Office of Foreign Assets Control, the United Nations Security Council, the European Union or its Member States, or any other government authority.",
-    "agree_terms": "Agree to terms",
+    "agree_terms": "I Agree I am 18 years or older and to all terms",
     "enter_gravex": "Enter Gravex"
   },
   "bridge": {

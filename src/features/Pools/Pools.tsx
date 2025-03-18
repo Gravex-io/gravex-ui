@@ -382,6 +382,13 @@ export default function Pools() {
                   onChange={onPoolValueChange}
                   variant="line"
                 />
+
+  <Flex alignItems="center">
+      <FormControl display="flex" alignItems="center">
+        <FormLabel minW={['80px', 'unset']}>{t('liquidity.show_farms')}</FormLabel>
+        <Switch defaultChecked={showFarms} onChange={handleSwitchFarmChange} />
+      </FormControl>
+    </Flex>
   */
   return (
     <>
@@ -428,7 +435,6 @@ export default function Pools() {
             backgroundColor={['transparent', colors.backgroundLight30]}
           >
             <GridItem area={'tabs'}>
-              <Desktop></Desktop>
               <Mobile>
                 <Select
                   sx={({ isPanelOpen }) => ({
@@ -530,13 +536,6 @@ export default function Pools() {
                         />
                       </FormControl>
                     </Box>
-
-                    <Flex alignItems="center">
-                      <FormControl display="flex" alignItems="center">
-                        <FormLabel minW={['80px', 'unset']}>{t('liquidity.show_farms')}</FormLabel>
-                        <Switch defaultChecked={showFarms} onChange={handleSwitchFarmChange} />
-                      </FormControl>
-                    </Flex>
 
                     {currentLayoutStyle === 'grid' ? (
                       <Flex alignItems="center">
