@@ -389,6 +389,26 @@ export default function Pools() {
         <Switch defaultChecked={showFarms} onChange={handleSwitchFarmChange} />
       </FormControl>
     </Flex>
+
+     <GridItem area={'tabs'}>
+              <Mobile>
+                <Select
+                  sx={({ isPanelOpen }) => ({
+                    borderRadius: 'full',
+                    height: '34px',
+                    minWidth: '102px',
+                    border: '1px solid transparent',
+                    borderColor: isPanelOpen ? 'currentcolor' : 'transparent'
+                  })}
+                  popoverContentSx={{
+                    bg: colors.tooltipBg
+                  }}
+                  value={activeTabItem.value}
+                  items={tabItems}
+                  onChange={(value) => onPoolValueChange(value)}
+                />
+              </Mobile>
+            </GridItem>
   */
   return (
     <>
@@ -417,44 +437,27 @@ export default function Pools() {
             py={2}
             gridTemplate={[
               `
-              "tabs more btn" auto
-              "coll coll  coll" auto
-              "search search search" auto / auto auto 1fr
-            `,
+              "btn search more" auto
+              "coll coll coll" auto / auto 1fr auto
+              `,
               `
-              "tabs tabs  tabs" auto
-              "search more btn" auto
-              "coll  coll  coll" auto / auto  auto 1fr
-            `,
+              "btn search more" auto
+              "coll coll coll" auto / auto 1fr auto
+              `,
               `
-              "tabs search more btn" auto
-              "coll coll coll  coll" auto / auto auto auto 1fr
-            `
+              "btn search more" auto
+              "coll coll coll coll" auto / auto 1fr auto
+              `
             ]}
             paddingX={appLayoutPaddingX}
             backgroundColor={['transparent', colors.backgroundLight30]}
           >
-            <GridItem area={'tabs'}>
-              <Mobile>
-                <Select
-                  sx={({ isPanelOpen }) => ({
-                    borderRadius: 'full',
-                    height: '34px',
-                    minWidth: '102px',
-                    border: '1px solid transparent',
-                    borderColor: isPanelOpen ? 'currentcolor' : 'transparent'
-                  })}
-                  popoverContentSx={{
-                    bg: colors.tooltipBg
-                  }}
-                  value={activeTabItem.value}
-                  items={tabItems}
-                  onChange={(value) => onPoolValueChange(value)}
-                />
-              </Mobile>
+            <GridItem area={'btn'} justifySelf={'start'}>
+              {/* Action Buttons create pool */}
+              <CreatePoolButton />
             </GridItem>
 
-            <GridItem area={'search'}>
+            <GridItem area={'search'} justifySelf={'end'}>
               {(!isMobile || isMobileSearchOpen) && (
                 <TokenSearchInput
                   ref={searchRef}
@@ -468,7 +471,7 @@ export default function Pools() {
               )}
             </GridItem>
 
-            <GridItem area={'more'}>
+            <GridItem area={'more'} justifySelf={'end'}>
               <Flex gap={3}>
                 <Button onClick={toggleSubcontrollers} variant="capsule" height={['34px', '40px']} isActive={isCollapseOpen}>
                   <MoreListControllers color={colors.textSecondary} width={listControllerIconSize} height={listControllerIconSize} />
@@ -479,11 +482,6 @@ export default function Pools() {
                   </Button>
                 )}
               </Flex>
-            </GridItem>
-
-            <GridItem area={'btn'} justifySelf={'end'}>
-              {/* Action Buttons create pool */}
-              <CreatePoolButton />
             </GridItem>
 
             <GridItem area={'coll'}>
