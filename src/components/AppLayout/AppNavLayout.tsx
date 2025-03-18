@@ -72,7 +72,7 @@ function AppNavLayout({
               {pathname === '/swap'
                 ? t('swap.title')
                 : pathname === '/liquidity-pools'
-                ? t('liquidity.title')
+                ? t('liquidity.pools')
                 : pathname === '/portfolio'
                 ? t('portfolio.title')
                 : pathname === '/playground'
@@ -89,7 +89,7 @@ function AppNavLayout({
         {/* nav routes */}
         <Desktop>
           <HStack flexGrow={1} justify="start" overflow={['auto', 'visible']} gap={15}>
-            <RouteLink href="/liquidity-pools" isActive={pathname.includes('/liquidity')} title={t('liquidity.title')} />
+            <RouteLink href="/liquidity-pools" isActive={pathname.includes('/liquidity')} title={t('liquidity.pools')} />
             <RouteLink href="/swap" isActive={pathname === '/swap'} title={t('swap.title')} />
             <RouteLink href="/portfolio" isActive={pathname === '/portfolio'} title={t('portfolio.title')} />
           </HStack>
