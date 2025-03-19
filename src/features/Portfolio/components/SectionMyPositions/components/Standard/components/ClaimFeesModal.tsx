@@ -1,30 +1,22 @@
-import AmountSlider from '@/components/AmountSlider'
-import Button from '@/components/Button'
-import TokenAvatar from '@/components/TokenAvatar'
-import { useLiquidityStore } from '@/store'
-import { colors } from '@/theme/cssVariables'
-import { formatCurrency } from '@/utils/numberish/formatter'
 import {
-  Flex,
-  HStack,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Text
+  Flex, HStack, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text
 } from '@chakra-ui/react'
-import { FormattedPoolInfoStandardItem } from '@/hooks/pool/type'
-import Decimal from 'decimal.js'
-import { useCallback, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { CpmmLockData } from '@/hooks/portfolio/cpmm/useLockCpmmBalance'
-import { getFirstNonZeroDecimal } from '@/utils/numberish/formatter'
 import { ApiV3PoolInfoStandardItemCpmm } from '@gravexio/gravex-sdk'
 import { PublicKey } from '@solana/web3.js'
 import BN from 'bn.js'
+import Decimal from 'decimal.js'
+import { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+
+import AmountSlider from '@/components/AmountSlider'
+import Button from '@/components/Button'
+import TokenAvatar from '@/components/TokenAvatar'
+import { FormattedPoolInfoStandardItem } from '@/hooks/pool/type'
+import { CpmmLockData } from '@/hooks/portfolio/cpmm/useLockCpmmBalance'
+import { useLiquidityStore } from '@/store'
+import { colors } from '@/theme/cssVariables'
+import { formatCurrency, getFirstNonZeroDecimal } from '@/utils/numberish/formatter'
+
 export default function ClaimFeesModal({
   isOpen,
   onClose,
@@ -138,9 +130,10 @@ export default function ClaimFeesModal({
               harvestLockCpmmLpAct({
                 poolInfo: poolInfo as unknown as ApiV3PoolInfoStandardItemCpmm,
                 nftMint: new PublicKey(lockData.nftMint),
-                lpFeeAmount: new BN(new Decimal(lockData.positionInfo.unclaimedFee.lp).mul(10 ** poolInfo.lpMint.decimals).toFixed(0)).mul(
-                  new BN(percent).div(new BN(100))
-                ),
+                lpFeeAmount: new BN(new Decimal(lockData.positionInfo.unclaimedFee.lp).mul(10 ** poolInfo.lpMint.decimals).toFixed(0))
+                  .mul(new BN(percent))
+                  .div(new BN(100)),
+
                 onSent: () => {
                   setIsSending(false)
                   setPercent(100)
