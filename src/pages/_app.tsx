@@ -52,7 +52,9 @@ const MyApp = ({ Component, pageProps, ...props }: AppProps) => {
         <meta property="og:locale" content="en" />
         <meta property="og:site_name" content="Gravex" />
         <meta property="og:title" content="Swap | Gravex" />
-        <title>{pageProps?.title ? `${pageProps.title} Gravex` : 'Gravex'}</title>
+        <title>{pageProps?.title ? `Gravex : ${pageProps.title}` : 'Gravex'}</title>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="shortcut icon" href="/favicon.png" />
       </Head>
       <DynamicProviders>
         <DynamicContent {...props}>
