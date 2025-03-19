@@ -140,7 +140,7 @@ export default function SelectWalletModal({ wallets, isOpen, onSelectWallet, onC
             <Box overflow={'hidden'} display={'flex'} flexDirection={'column'}>
               <Box mb={5} color={colors.textTertiary} bg={colors.backgroundTransparent07} p={3} fontSize={['xs', 'sm']} rounded="md">
                 {t('wallet_connect_panel.desc')}{' '}
-                <Link href="https://gravex.io/docs/disclaimer/" isExternal>
+                <Link href="/docs/disclaimer/" isExternal>
                   {t('wallet_connect_panel.desc_link')}
                 </Link>
               </Box>
