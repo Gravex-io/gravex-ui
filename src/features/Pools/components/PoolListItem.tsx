@@ -70,10 +70,6 @@ export default function PoolListItem({
 
   const timeData = useMemo(() => pool[field], [pool, field])
 
-  const validWeeklyRewards = pool.weeklyRewards.filter(
-    (reward) => Number(reward.amount) !== 0 && (!reward.endTime || reward.endTime * 1000 > dayjs().subtract(10, 'day').valueOf())
-  )
-
   const onFavoriteClick = () => {
     setIsFavoriteState((v) => !v)
     setFavoritePoolCache(pool.id)
@@ -152,7 +148,6 @@ export default function PoolListItem({
 
             <Tooltip
               label={
-                //So11111111111111111111111111111111111111112
                 <Box py={0.5}>
                   <AddressChip address={pool.id} renderLabel={`${t('common.pool_id')}:`} mb="2" textProps={{ fontSize: 'xs' }} />
                   <AddressChip
@@ -292,7 +287,7 @@ export default function PoolListItem({
               <Desktop>
                 {/* Reward stack */}
                 <Flex>
-                  {validWeeklyRewards.map((reward, idx) => {
+                  {pool.weeklyRewards.map((reward, idx) => {
                     return (
                       <TokenAvatar
                         size={['sm', 'smi', 'md']}
@@ -488,7 +483,7 @@ export default function PoolListItem({
                     <Text fontSize="sm" color={colors.textSecondary}>
                       {t(`common.rewards`)}
                     </Text>
-                    <PoolListItemRewardStack rewards={validWeeklyRewards} />
+                    <PoolListItemRewardStack rewards={pool.weeklyRewards} />
                   </HStack>
                 </VStack>
 
@@ -556,7 +551,7 @@ export default function PoolListItem({
                       {formatToRawLocaleStr(toAPRPercent(timeData.apr))}
                     </Text>
                     <HStack ml={1} spacing={'-7%'}>
-                      {validWeeklyRewards.map((reward, idx) => (
+                      {pool.weeklyRewards.map((reward, idx) => (
                         <TokenAvatar key={`pool-list-item-reward-${idx}`} token={reward.token} size="xs" />
                       ))}
                     </HStack>
@@ -616,7 +611,7 @@ export default function PoolListItem({
           fees={formatCurrency(timeData.volumeFee, { decimalPlaces: 0 })}
           tvl={formatCurrency(pool.tvl, { decimalPlaces: 0 })}
           aprData={aprData}
-          weeklyRewards={validWeeklyRewards}
+          weeklyRewards={pool.weeklyRewards}
           isEcosystem={pool.rewardDefaultPoolInfos === 'Ecosystem'}
         />
       </Mobile>

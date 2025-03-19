@@ -1,5 +1,5 @@
-import { loadMoonPay } from '@moonpay/moonpay-js'
 import { Box } from '@chakra-ui/react'
+import { loadMoonPay } from '@moonpay/moonpay-js'
 import { ReactNode, useEffect, useState } from 'react'
 
 export function MoonpayBuy(props: { children: ReactNode }) {

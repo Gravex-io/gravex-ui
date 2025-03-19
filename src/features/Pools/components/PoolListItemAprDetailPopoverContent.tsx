@@ -1,17 +1,20 @@
+import { Badge, Box, Flex, Grid, HStack, useColorMode, VStack } from '@chakra-ui/react'
+import dayjs from 'dayjs'
+import Decimal from 'decimal.js'
 import { useTranslation } from 'react-i18next'
+
 import TokenAvatar from '@/components/TokenAvatar'
-import { colors, sizes } from '@/theme/cssVariables'
-import { Badge, Box, Flex, Grid, HStack, VStack, useColorMode } from '@chakra-ui/react'
-import { WeeklyRewardData } from '@/hooks/pool/type'
 import { AprData } from '@/features/Clmm/utils/calApr'
+import { WeeklyRewardData } from '@/hooks/pool/type'
 import useTokenPrice from '@/hooks/token/useTokenPrice'
+import { colors, sizes } from '@/theme/cssVariables'
+import { formatCurrency, formatToRawLocaleStr } from '@/utils/numberish/formatter'
+import { wSolToSolString } from '@/utils/token'
+
+import { toAPRPercent } from '../util'
+
 import { aprColors } from './PoolListItemAprLine'
 import { PoolListItemAprPie } from './PoolListItemAprPie'
-import { wSolToSolString } from '@/utils/token'
-import { toAPRPercent } from '../util'
-import { formatCurrency, formatToRawLocaleStr } from '@/utils/numberish/formatter'
-import Decimal from 'decimal.js'
-import dayjs from 'dayjs'
 
 export default function PoolListItemAprDetailPopoverContent({
   aprData,
@@ -60,7 +63,8 @@ export default function PoolListItemAprDetailPopoverContent({
                 </Box>
               </Flex>
               {aprData.rewards.map(({ apr, mint }, idx) => {
-                if (weeklyRewards[idx].amount === '0') return null
+                const reward = weeklyRewards.find((r) => r.token.address === mint.address)
+                if (!reward || reward.amount === '0') return null
                 return (
                   <Flex w="full" gap={4} key={`reward-${mint?.symbol}-${idx}`} justify="space-between" align="center">
                     <Flex fontSize={sizes.textXS} fontWeight="normal" color={colors.textSecondary} justify="flex-start" align="center">

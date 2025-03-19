@@ -254,12 +254,19 @@ export default function SelectWalletModal({ wallets, isOpen, onSelectWallet, onC
                     </HStack>
                   </Link>
                 </Flex>
-                <Flex justifyContent="center" alignItems="center" color={colors.lightPurple} pt={isMobile ? 0 : 4} mb={isMobile ? 6 : 0}>
-                  <Text fontSize="xs">{t('wallet_connect_panel.buy_crypto_with_fiat')}</Text>
+                <Flex
+                  justifyContent="center"
+                  alignItems="center"
+                  color={colors.lightPurple}
+                  pt={isMobile ? 0 : 4}
+                  mb={isMobile ? 6 : 0}
+                  gap={1}
+                >
+                  <Text fontSize="xl">{t('wallet_connect_panel.buy_crypto_with_fiat')}</Text>
                   <MoonpayBuy>
-                    <HStack gap={0}>
+                    <HStack gap={1}>
                       <MoonPayIconWithText />
-                      <ChevronRightIcon width={'16px'} height={'16px'} />
+                      <ChevronRightIcon width={'20px'} height={'20px'} />
                     </HStack>
                   </MoonpayBuy>
                 </Flex>

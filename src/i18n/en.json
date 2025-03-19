@@ -184,7 +184,7 @@
     "wallet_installed_refresh_page": "I’ve already Installed, Refresh page",
     "goback": "Go back",
     "sell_crypto": "Off ramp to fiat with ",
-    "buy_crypto_with_fiat": "Buy Crypto with fiat"
+    "buy_crypto_with_fiat": "Buy Crypto with Cash "
   },
   "token_selector": {
     "search_placeholder": "Search by token or paste address",
