@@ -1,5 +1,17 @@
 import {
-  Box, Center, Flex, Grid, GridItem, Highlight, HStack, Image, Tag, Text, useColorMode, useDisclosure, VStack
+  Box,
+  Center,
+  Flex,
+  Grid,
+  GridItem,
+  Highlight,
+  HStack,
+  Image,
+  Tag,
+  Text,
+  useColorMode,
+  useDisclosure,
+  VStack
 } from '@chakra-ui/react'
 import dayjs from 'dayjs'
 import router from 'next/router'
@@ -93,7 +105,7 @@ export default function PoolListItem({
   const onClickSwap = useCallback(() => {
     const [inputMint, outputMint] = [wSolToSol(pool.mintA.address), wSolToSol(pool.mintB.address)]
     router.push({
-      pathname: '/swap',
+      pathname: '/trade',
       query: {
         inputMint,
         outputMint

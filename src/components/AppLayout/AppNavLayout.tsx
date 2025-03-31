@@ -1,5 +1,18 @@
 import {
-  Box, Flex, HStack, Image, Menu, MenuButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, Tooltip
+  Box,
+  Flex,
+  HStack,
+  Image,
+  Menu,
+  MenuButton,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+  Tooltip
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -69,7 +82,7 @@ function AppNavLayout({
           <HStack>
             <Image src="/images/logo64.png" alt="Gravex Logo" boxSize="30px" fit="cover" borderRadius="full" />
             <Text fontSize="xl" fontWeight="medium" color={colors.textSecondary}>
-              {pathname === '/swap'
+              {pathname === '/trade'
                 ? t('swap.title')
                 : pathname === '/gravity-coins'
                 ? t('liquidity.pools')
@@ -90,7 +103,7 @@ function AppNavLayout({
         <Desktop>
           <HStack flexGrow={1} justify="start" overflow={['auto', 'visible']} gap={15}>
             <RouteLink href="/gravity-coins" isActive={pathname.includes('/gravity')} title={t('liquidity.pools')} />
-            <RouteLink href="/swap" isActive={pathname === '/swap'} title={t('swap.title')} />
+            <RouteLink href="/trade" isActive={pathname === '/trade'} title={t('swap.title')} />
             <RouteLink href="/portfolio" isActive={pathname === '/portfolio'} title={t('portfolio.title')} />
           </HStack>
         </Desktop>

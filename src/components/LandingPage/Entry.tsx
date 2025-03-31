@@ -29,7 +29,7 @@ export default function Entry() {
                 <Button minW={['100%', 230]} minH={14} variant="outline">
                   Read Doc <Doc style={{ marginLeft: 10 }} />
                 </Button>
-                <Link href="/swap">
+                <Link href="/trade">
                   <Button minW={['100%', 230]} minH={14}>
                     Launch App
                   </Button>

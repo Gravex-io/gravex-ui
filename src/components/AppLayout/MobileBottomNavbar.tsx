@@ -19,7 +19,7 @@ export function MobileBottomNavbar() {
   const { colorMode } = useColorMode()
   const isLight = colorMode === 'light'
   const { pathname } = useRouter()
-  const swapHref = '/swap'
+  const swapHref = '/trade'
   const isSwapActive = pathname === swapHref
   const liquidityHref = '/gravity-coins'
   const isLiquidityActive = pathname === liquidityHref
