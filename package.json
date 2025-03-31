@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "2.10.1",
+    "@chakra-ui/react-types": "^2.0.6",
     "@emotion/react": "11.0.0",
     "@emotion/styled": "^11",
     "@gravexio/gravex-sdk": "^0.1.2",

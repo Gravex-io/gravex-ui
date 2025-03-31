@@ -10,7 +10,7 @@ export default function Feature() {
   const featureList = [
     {
       title: 'Trade',
-      desc: 'Swap or Trade quickly and cheaply.',
+      desc: 'Trade quickly and cheaply.',
       link: '',
       linkTitle: 'Launch Exchange'
     },
@@ -40,7 +40,7 @@ export default function Feature() {
     },
     {
       title: 'NFT',
-      desc: 'Swap or Trade quickly and cheaply.',
+      desc: 'Trade quickly and cheaply.',
       link: '',
       linkTitle: 'Launch NFT'
     }

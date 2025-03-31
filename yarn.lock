@@ -394,6 +394,11 @@
     copy-to-clipboard "3.3.3"
     framesync "6.1.2"
 
+"@chakra-ui/react-types@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-types/-/react-types-2.0.6.tgz#96b4f8a082ab5244fe6b574e953b1b64ece9605a"
+  integrity sha512-aAq/nl//PneEfeaDb94zwfXor4OP/d5kc6dEXOZB2HJgCt3hu2+F/1u1QpPLPPTys5xexkQojuZQLnnD9lmQFw==
+
 "@chakra-ui/react@2.10.1":
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/@chakra-ui/react/-/react-2.10.1.tgz#e847ffd4ef8c817060b257cd0b1b466a0f152643"

@@ -186,10 +186,7 @@ export default function CreatePosition() {
       mint: wSolToSol(tokens.mintA?.address) || '',
       decimals: tokens.mintA?.decimals
     }).text,
-    balanceB: getTokenBalanceUiAmount({
-      mint: wSolToSol(tokens.mintB?.address) || '',
-      decimals: tokens.mintB?.decimals
-    }).text
+    disabledInput
   })
 
   const formatDecimalToDigit = useCallback(
@@ -257,7 +254,7 @@ export default function CreatePosition() {
   )
   const handleLeftRangeBlur = useEvent((val: string, skip?: boolean) => {
     if (val === '' || skip) return
-    const decimal = new Decimal(val).decimalPlaces()
+    const decimal = Math.max(new Decimal(val).decimalPlaces(), clmmData?.poolDecimals ?? 0)
     if (new Decimal(tickPriceRef.current.priceLower || 0).toFixed(decimal, Decimal.ROUND_DOWN) === val) return
     const r = getPriceAndTick({ pool: currentPool, price: val, baseIn })
 
@@ -274,7 +271,8 @@ export default function CreatePosition() {
   const handleRightRangeBlur = useEvent((val: string, skip?: boolean) => {
     console.log(123123123, val, skip)
     if (val === '' || skip) return
-    if (new Decimal(tickPriceRef.current.priceUpper || 0).toDecimalPlaces(new Decimal(val).decimalPlaces()).eq(val)) return
+    const decimal = Math.max(new Decimal(val).decimalPlaces(), clmmData?.poolDecimals ?? 0)
+    if (new Decimal(tickPriceRef.current.priceUpper || 0).toDecimalPlaces(decimal).eq(val)) return
     const r = getPriceAndTick({ pool: currentPool, price: val, baseIn })
     if (!r) return
     tickPriceRef.current.tickUpper = r.tick
