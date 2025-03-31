@@ -1,49 +1,42 @@
+import {
+  Box, Button, CircularProgress, Collapse, Flex, HStack, SimpleGrid, Text, Tooltip as ChakraTip, useDisclosure
+} from '@chakra-ui/react'
+import { ApiV3Token, RAYMint, SOL_INFO, TokenInfo, TransferFeeDataBaseType } from '@gravexio/gravex-sdk'
+import { NATIVE_MINT } from '@solana/spl-token'
+import { PublicKey } from '@solana/web3.js'
+import dayjs from 'dayjs'
+import Decimal from 'decimal.js'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import shallow from 'zustand/shallow'
+
 import ConnectedButton from '@/components/ConnectedButton'
 import { QuestionToolTip } from '@/components/QuestionToolTip'
 import TokenInput, { DEFAULT_SOL_RESERVER, InputActionRef } from '@/components/TokenInput'
+import Tooltip from '@/components/Tooltip'
+import useTokenInfo from '@/hooks/token/useTokenInfo'
 import { useEvent } from '@/hooks/useEvent'
 import { useHover } from '@/hooks/useHover'
+import CircleInfo from '@/icons/misc/CircleInfo'
+import QuestionCircleIcon from '@/icons/misc/QuestionCircleIcon'
+import SwapButtonOneTurnIcon from '@/icons/misc/SwapButtonOneTurnIcon'
+import SwapButtonTwoTurnIcon from '@/icons/misc/SwapButtonTwoTurnIcon'
+import WarningIcon from '@/icons/misc/WarningIcon'
 import { useAppStore, useTokenAccountStore, useTokenStore } from '@/store'
 import { colors } from '@/theme/cssVariables'
-import {
-  Box,
-  Button,
-  Collapse,
-  Flex,
-  HStack,
-  SimpleGrid,
-  Text,
-  useDisclosure,
-  CircularProgress,
-  Tooltip as ChakraTip
-} from '@chakra-ui/react'
-import { ApiV3Token, RAYMint, SOL_INFO, TokenInfo, TransferFeeDataBaseType } from '@gravexio/gravex-sdk'
-import { PublicKey } from '@solana/web3.js'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import shallow from 'zustand/shallow'
-import CircleInfo from '@/icons/misc/CircleInfo'
-import { getSwapPairCache, setSwapPairCache } from '../util'
-import { urlToMint, mintToUrl, isSolWSol, getMintPriority, getMintSymbol } from '@/utils/token'
-import { SwapInfoBoard } from './SwapInfoBoard'
-import SwapButtonTwoTurnIcon from '@/icons/misc/SwapButtonTwoTurnIcon'
-import SwapButtonOneTurnIcon from '@/icons/misc/SwapButtonOneTurnIcon'
-import useSwap from '../useSwap'
-import { ApiSwapV1OutSuccess } from '../type'
-import { useSwapStore } from '../useSwapStore'
-import Decimal from 'decimal.js'
-import HighRiskAlert from './HighRiskAlert'
-import { useRouteQuery, setUrlQuery } from '@/utils/routeTools'
-import WarningIcon from '@/icons/misc/WarningIcon'
-import dayjs from 'dayjs'
-import { NATIVE_MINT } from '@solana/spl-token'
-import { Trans } from 'react-i18next'
+import { debounce } from '@/utils/functionMethods'
 import { formatCurrency, formatToRawLocaleStr } from '@/utils/numberish/formatter'
 import ToPublicKey, { isValidPublicKey } from '@/utils/publicKey'
-import useTokenInfo from '@/hooks/token/useTokenInfo'
-import { debounce } from '@/utils/functionMethods'
-import QuestionCircleIcon from '@/icons/misc/QuestionCircleIcon'
-import Tooltip from '@/components/Tooltip'
+import { setUrlQuery, useRouteQuery } from '@/utils/routeTools'
+import { getMintPriority, getMintSymbol, isSolWSol, mintToUrl, urlToMint } from '@/utils/token'
+
+import { ApiSwapV1OutSuccess } from '../type'
+import useSwap from '../useSwap'
+import { useSwapStore } from '../useSwapStore'
+import { getSwapPairCache, setSwapPairCache } from '../util'
+
+import HighRiskAlert from './HighRiskAlert'
+import { SwapInfoBoard } from './SwapInfoBoard'
 
 export function SwapPanel({
   onInputMintChange,
@@ -60,7 +53,8 @@ export function SwapPanel({
   const [defaultInput, defaultOutput] = [urlInputMint || cacheInput, urlOutputMint || cacheOutput]
 
   const { t, i18n } = useTranslation()
-  const { swap: swapDisabled } = useAppStore().featureDisabled
+  const { swap: swapDisabled } = useAppStore((s) => s.featureDisabled)
+  const epochInfo = useAppStore((s) => s.epochInfo)
   const swapTokenAct = useSwapStore((s) => s.swapTokenAct)
   const unWrapSolAct = useSwapStore((s) => s.unWrapSolAct)
   const tokenMap = useTokenStore((s) => s.tokenMap)
@@ -113,6 +107,26 @@ export function SwapPanel({
     tokenInput?.extensions.feeConfig || inputInfo?.extensions.feeConfig,
     tokenOutput?.extensions.feeConfig || outputInfo?.extensions.feeConfig
   ]
+
+  const feeKeys: { input: 'newerTransferFee' | 'olderTransferFee'; output: 'newerTransferFee' | 'olderTransferFee' } = useMemo(() => {
+    try {
+      return {
+        input:
+          !epochInfo || !inputFeeConfig || Number(epochInfo.epoch) >= Number(inputFeeConfig.newerTransferFee.epoch)
+            ? 'newerTransferFee'
+            : 'olderTransferFee',
+        output:
+          !epochInfo || !outputFeeConfig || Number(epochInfo.epoch) >= Number(outputFeeConfig.newerTransferFee.epoch)
+            ? 'newerTransferFee'
+            : 'olderTransferFee'
+      }
+    } catch {
+      return {
+        input: 'newerTransferFee',
+        output: 'newerTransferFee'
+      }
+    }
+  }, [epochInfo, inputFeeConfig, outputFeeConfig])
 
   useEffect(() => {
     if (defaultInput) setInputMint(defaultInput)
@@ -421,7 +435,7 @@ export function SwapPanel({
                 px="1"
                 borderRadius="4px"
               >
-                {getMintSymbol({ mint: tokenInput })} ({inputFeeConfig.newerTransferFee.transferFeeBasisPoints / 100}% {t('common.tax')})
+                {getMintSymbol({ mint: tokenInput })} ({inputFeeConfig[feeKeys.input].transferFeeBasisPoints / 100}% {t('common.tax')})
               </Box>
             </Tooltip>
           ) : null}
@@ -440,7 +454,7 @@ export function SwapPanel({
                 px="1"
                 borderRadius="4px"
               >
-                {getMintSymbol({ mint: tokenOutput })} ({outputFeeConfig.newerTransferFee.transferFeeBasisPoints / 100}% {t('common.tax')})
+                {getMintSymbol({ mint: tokenOutput })} ({outputFeeConfig[feeKeys.output].transferFeeBasisPoints / 100}% {t('common.tax')})
               </Box>
             </Tooltip>
           ) : null}
@@ -509,6 +523,16 @@ function Progress() {
 }
 
 function TransferFeeTip({ feeConfig, token }: { feeConfig: TransferFeeDataBaseType; token: TokenInfo }) {
+  const epochInfo = useAppStore((s) => s.epochInfo)
+
+  const feeKey = useMemo(() => {
+    try {
+      return !epochInfo || Number(epochInfo.epoch) >= Number(feeConfig.newerTransferFee.epoch) ? 'newerTransferFee' : 'olderTransferFee'
+    } catch {
+      return 'newerTransferFee'
+    }
+  }, [epochInfo])
+
   const { t } = useTranslation()
   return (
     <>
@@ -540,7 +564,7 @@ function TransferFeeTip({ feeConfig, token }: { feeConfig: TransferFeeDataBaseTy
               <QuestionCircleIcon />
             </ChakraTip>
           </Flex>
-          <Text color={colors.text02}>{feeConfig.newerTransferFee.transferFeeBasisPoints / 100}%</Text>
+          <Text color={colors.text02}>{feeConfig[feeKey].transferFeeBasisPoints / 100}%</Text>
         </Flex>
         <Flex flexDir={['column', 'row']} justifyContent="space-between" gap={[0, 2]}>
           <Flex alignItems="center" gap="0.5">
@@ -553,7 +577,7 @@ function TransferFeeTip({ feeConfig, token }: { feeConfig: TransferFeeDataBaseTy
           </Flex>
           <Text color={colors.text02}>
             {formatCurrency(
-              new Decimal(feeConfig.newerTransferFee.maximumFee)
+              new Decimal(feeConfig[feeKey].maximumFee)
                 .div(10 ** token.decimals)
                 .toDecimalPlaces(token.decimals)
                 .toString(),

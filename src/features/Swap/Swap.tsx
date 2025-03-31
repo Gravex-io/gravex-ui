@@ -1,31 +1,34 @@
-import { Box, Grid, GridItem, HStack, Text, VStack, useClipboard } from '@chakra-ui/react'
+import { Box, Grid, GridItem, HStack, Text, useClipboard, VStack } from '@chakra-ui/react'
 import { RAYMint, SOLMint } from '@gravexio/gravex-sdk'
 import { PublicKey } from '@solana/web3.js'
-import { useMemo, useState, useRef, useEffect } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { MoonpayBuy } from '@/components/Moonpay'
 import PanelCard from '@/components/PanelCard'
+import { SlippageAdjuster } from '@/components/SlippageAdjuster'
+import Tooltip from '@/components/Tooltip'
+import useRefreshEpochInfo from '@/hooks/app/useRefreshEpochInfo'
+import { TimeType } from '@/hooks/pool/useFetchPoolKLine'
+import { toastSubject } from '@/hooks/toast/useGlobalToast'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import useResponsive from '@/hooks/useResponsive'
+import CreditCardIcon from '@/icons/misc/CreditCardIcon'
+import LinkIcon from '@/icons/misc/LinkIcon'
 import SwapChatEmptyIcon from '@/icons/misc/SwapChatEmptyIcon'
 import SwapChatIcon from '@/icons/misc/SwapChatIcon'
 import SwapExchangeIcon from '@/icons/misc/SwapExchangeIcon'
-import LinkIcon from '@/icons/misc/LinkIcon'
-import CreditCardIcon from '@/icons/misc/CreditCardIcon'
 import { useAppStore, useTokenStore } from '@/store'
 import { colors } from '@/theme/cssVariables'
+import { getMintPriority } from '@/utils/token'
+
 import { getVHExpression } from '../../theme/cssValue/getViewportExpression'
-import { getSwapPairCache, setSwapPairCache } from './util'
+
 import { SwapKlinePanel } from './components/SwapKlinePanel'
 import { SwapKlinePanelMobileDrawer } from './components/SwapKlinePanelMobileDrawer'
 import { SwapKlinePanelMobileThumbnail } from './components/SwapKlinePanelMobileThumbnail'
 import { SwapPanel } from './components/SwapPanel'
-import { TimeType } from '@/hooks/pool/useFetchPoolKLine'
-import { SlippageAdjuster } from '@/components/SlippageAdjuster'
-import { getMintPriority } from '@/utils/token'
-import Tooltip from '@/components/Tooltip'
-import { MoonpayBuy } from '@/components/Moonpay'
-import { toastSubject } from '@/hooks/toast/useGlobalToast'
-import useResponsive from '@/hooks/useResponsive'
+import { getSwapPairCache, setSwapPairCache } from './util'
 
 export default function Swap() {
   // const { inputMint: cacheInput, outputMint: cacheOutput } = getSwapPairCache()
@@ -45,6 +48,7 @@ export default function Swap() {
   const klineRef = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
   const { onCopy, setValue } = useClipboard('')
+  useRefreshEpochInfo(true)
   const [isBlinkReferralActive, setIsBlinkReferralActive] = useState(false)
   const solMintAddress = SOLMint.toBase58()
 
