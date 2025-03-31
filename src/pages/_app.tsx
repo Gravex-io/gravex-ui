@@ -43,8 +43,8 @@ const MyApp = ({ Component, pageProps, ...props }: AppProps) => {
         <meta name="twitter:site" content="@GravexProtocol" />
         <meta name="twitter:creator" content="@GravexProtocol" />
         <meta name="twitter:title" content="Gravex" />
-        <meta name="twitter:description" content="On-chain Gravity Coin(tm) swap platform, the next generation of meme coins" />
-        <meta property="og:description" content="On-chain Gravity Coin(tm) swap platform, the next generation of meme coins" />
+        <meta name="twitter:description" content="On-chain Gravity Coin(tm) trading platform, the next evolution of meme coins" />
+        <meta property="og:description" content="On-chain Gravity Coin(tm) trading platform, the next evolution of meme coins" />
         <meta property="og:url" content="https://gravex.io/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://img-v1.raydium.io/share/7be7ee6c-56b2-451e-a010-6c21e0db2ee5.png" />
